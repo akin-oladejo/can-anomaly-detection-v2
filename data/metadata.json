@@ -1,0 +1,142 @@
+{
+    "train": {
+        "description": "basic driving activities (e.g., reverse; drive; accel; brake; ect.) and more complex/one-off activities (e.g., key lock/unlock; door open/close; cruise control; infotainment/steering wheel button presses; turn signals; lights; ect.)",
+        "path": "../data/train/ambient_dyno_drive_extended_long.log",
+        "elapsed_sec": 657.876345,
+        "on_dyno": true
+    },
+    "test": {
+        "correlated_signal_attack": {
+            "description": "start from driving; accelerate; start injecting; car rolls to stop; stop injecting; accelerate",
+            "path": "../data/test/correlated_signal_attack_1.log",
+            "elapsed_sec": 33.101852,
+            "injection_data_str": "595945450000FFFF",
+            "injection_id": "0x6e0",
+            "injection_interval": [
+                9.191851,
+                30.050109
+            ],
+            "modified": false,
+            "on_dyno": true
+        },
+        "fuzzing_attack": {
+            "description": "start from driving; accelerate; start injecting; vehicular histrionics ensue; stop injecting; car rolls to stop",
+            "path": "../data/test/fuzzing_attack_1.log",
+            "elapsed_sec": 20.338949,
+            "injection_data_str": "FFFFFFFFFFFFFFFF",
+            "injection_id": "XXX",
+            "injection_interval": [
+                4.622975,
+                7.958234
+            ],
+            "modified": false,
+            "on_dyno": true
+        },
+        "max_speedometer_attack": {
+            "description": "start from park; drive; accelerate; start injecting; speedometer jumps to maximum, stop injecting; decelerate; park",
+            "path": "../data/test/max_speedometer_attack_1.log",
+            "elapsed_sec": 88.021577,
+            "injection_data_str": "XXXXXXXXXXFFXXXX",
+            "injection_id": "0xd0",
+            "injection_interval": [
+                42.009204,
+                66.449011
+            ],
+            "modified": false,
+            "on_dyno": true
+        },
+        "reverse_light_off_attack": {
+            "description": "start from park; reverse; reverse lights turn on; accelerate; coast; start injecting; reverse lights turn off, stop injecting; reverse lights turn on",
+            "path": "../data/test/reverse_light_off_attack_1.log",
+            "elapsed_sec": 28.109869,
+            "injection_data_str": "XXXX04XXXXXXXXXX",
+            "injection_id": "0xd0",
+            "injection_interval": [
+                16.627923,
+                23.347311
+            ],
+            "modified": false,
+            "on_dyno": true
+        },
+        "reverse_light_on_attack": {
+            "description": "start from park; drive (reverse lights turn on fleetingly when shifting through R); drive; accelerate; start injecting; reverse lights turn on, coast; stop injecting; reverse lights turn off; decelerate; park (reverse lights turn on fleetingly when shifting through R)",
+            "path": "../data/test/reverse_light_on_attack_1.log",
+            "elapsed_sec": 54.850207,
+            "injection_data_str": "XXXX0CXXXXXXXXXX",
+            "injection_id": "0xd0",
+            "injection_interval": [
+                18.929177,
+                38.836015
+            ],
+            "modified": false,
+            "on_dyno": true
+        }
+    },
+    "validation": {
+        "correlated_signal_attack": {
+            "description": "start from driving; accelerate; start injecting through end of capture; car rolls to stop",
+            "path": "../data/validation/correlated_signal_attack_2.log",
+            "elapsed_sec": 28.226893,
+            "injection_data_str": "595945450000FFFF",
+            "injection_id": "0x6e0",
+            "injection_interval": [
+                6.830477,
+                28.225908
+            ],
+            "modified": false,
+            "on_dyno": true
+        },
+        "fuzzing_attack": {
+            "description": "start from park; reverse; accelerate; start injecting through end of capture; vehicular histrionics ensue",
+            "path": "../data/validation/fuzzing_attack_2.log",
+            "elapsed_sec": 13.365329,
+            "injection_data_str": "FFFFFFFFFFFFFFFF",
+            "injection_id": "XXX",
+            "injection_interval": [
+                11.367798,
+                13.346811
+            ],
+            "modified": false,
+            "on_dyno": true
+        },
+        "max_speedometer_attack": {
+            "description": "start from driving; accelerate; start injecting; speedometer jumps to maximum, decelerate, stop injecting; accelerate; decelerate; park",
+            "path": "../data/validation/max_speedometer_attack_2.log",
+            "elapsed_sec": 59.696973,
+            "injection_data_str": "XXXXXXXXXXFFXXXX",
+            "injection_id": "0xd0",
+            "injection_interval": [
+                16.009225,
+                47.408246
+            ],
+            "modified": false,
+            "on_dyno": true
+        },
+        "reverse_light_off_attack": {
+            "description": "start from park; reverse; reverse lights turn on; accelerate; coast; start injecting; reverse light turns off, stop injecting; reverse lights turn on",
+            "path": "../data/validation/reverse_light_off_attack_2.log",
+            "elapsed_sec": 40.665296,
+            "injection_data_str": "XXXX04XXXXXXXXXX",
+            "injection_id": "0xd0",
+            "injection_interval": [
+                13.168608,
+                36.87663
+            ],
+            "modified": false,
+            "on_dyno": true
+        },
+        "reverse_light_on_attack": {
+            "description": "start from park; drive (reverse lights turn on fleetingly when shifting through R); accelerate; start injecting; reverse lights turn on, accelerate/decelerate/coast; stop injecting; reverse lights turn off; decelerate; park (reverse lights turn on fleetingly when shifting through R)",
+            "path": "../data/validation/reverse_light_on_attack_2.log",
+            "elapsed_sec": 72.020905,
+            "injection_data_str": "XXXX0CXXXXXXXXXX",
+            "injection_id": "0xd0",
+            "injection_interval": [
+                20.407134,
+                57.297253
+            ],
+            "modified": false,
+            "on_dyno": true
+        }
+    }
+}

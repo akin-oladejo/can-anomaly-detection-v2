@@ -1,0 +1,10 @@
+# scratch
+notebooks/scratch.ipynb
+TODO.md
+
+# jupyter
+.jupyter/
+
+# virtual environment
+Pipfile
+Pipfile.lock
