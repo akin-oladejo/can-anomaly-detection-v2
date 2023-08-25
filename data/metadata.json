@@ -1,8 +1,8 @@
 {
     "train": {
-        "description": "basic driving activities (e.g., reverse; drive; accel; brake; ect.) and more complex/one-off activities (e.g., key lock/unlock; door open/close; cruise control; infotainment/steering wheel button presses; turn signals; lights; ect.)",
-        "path": "../data/train/ambient_dyno_drive_extended_long.log",
-        "elapsed_sec": 657.876345,
+        "description": "basic drive activities (e.g., drive; accelerate; decelerate; reverse; etc.)",
+        "path": "../data/train/ambient_dyno_drive_basic_short.log",
+        "elapsed_sec": 444.75061,
         "on_dyno": true
     },
     "test": {
