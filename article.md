@@ -122,7 +122,7 @@ Reverse Light Off   : 1.0
 Reverse Light On    : 0.98701
 ```
 ![freq-3](images/freq-3.png)
-
+Perfect! The frequency-based method was successful in detecting flam attacks in both the test and validation datasets, achieving near-perfect results.
 ## Method 2: Density-based Detection
 One of the more popular unsupervised algorithms for anomaly/novelty detection is the Local Outlier Factor proposed by Breunig, Kriegel, Ng, and Sander (2000). It works by comparing the local density of a point with the densities of its neighbors. It considers as outliers the samples that have a substantially lower density than their neighbors.
 
