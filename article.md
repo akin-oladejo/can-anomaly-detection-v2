@@ -113,6 +113,7 @@ Reverse Light On    : 0.97674
 ![freq-2](images/freq-2.png)
 
 ### Results (post-tuning)
+This is the performance of the tuned model on the holdout set:
 ```
 F1 Scores of the Frequency Detection method:
 Correlated Signal   : 0.97778
@@ -144,12 +145,40 @@ Max Speedometer     : 0.26986
 Reverse Light Off   : 0.26673
 Reverse Light On    : 0.30615
 ```
-![freq-1](images/lof-1.png)
+![lof-1](images/lof-1.png)
 
 ### Tuning
+The `LocalOutlierFactor` implementation in sklearn has several hyperparameters including 
+- `n_neighbors`: the number of neighbors to use by default for kneighbors queries  
+- `algorithm`: the algorithm used to compare the nearest neighbors
+- `leaf_size`: used when either `KDTree` or `BallTree` algorithms are used for comparing the nearest neighbors 
 
+To tune this model, the `HalvingGridSearchCV` will be used. `HalvingGridSearchCV` is an elimination variant of the exhaustive Grid Search which excludes poor performing hyperparameter combinations in successive stages like a tournament. Using this search method across the given hyperparameter space, we are able to save time and computation resources as opposed to using `GridSearchCV`.
+
+Note that there will be slight workarounds for the tuning step:
+1. All attack data in the test folder will be used for tuning. After tuning, the updated `LOF` will be tested on all the attacks in the validation set. This means concatenating the attack data.
+2. The version of `LocalOutlierFactor` used here does not set `novelty` to true. It is essentially an outlier detection estimator. The focus here is a ballpark for `n_neighbors` that will be suitable enough for the development of the intrusion detection system.  
+  
+The hyperparameter search reveals an `n_neighbors` value of 90 to be the best provided candidate. Let's see how it performs on the test set:
+```
+F1 Scores of the Local Outlier Factor method:
+Correlated Signal   : 0.43746
+Fuzzing             : 0.25827
+Max Speedometer     : 0.27541
+Reverse Light Off   : 0.2719
+Reverse Light On    : 0.31505
+```
+![lof-2](images/lof-2.png)
 ### Results (post-tuning)
-
+This is the performance of the tuned model on the holdout set:
+```
+Correlated Signal   : 0.41439
+Fuzzing             : 0.22781
+Max Speedometer     : 0.44358
+Reverse Light Off   : 0.40447
+Reverse Light On    : 0.39205
+```
+![lof-3](images/lof-3.png)
 ## Method 3: Reconstruction Error
 Autoencoders are a deep-learning architecture with a quirk: the input and output layers have the same number of neurons, with a bottleneck in between. Basically, they are trained to copy their input to their output. They can be used for several purposes such as compression, image denoising and anomaly detection. To use an autoencoder for anomaly detection, you would train it on normal data and define a threshold on the error of reconstruction to discriminate data it has not seen before. If the error of reconstruction of a data point exceeds that threshold, that data point is an anomaly. Fawaz Waselallah Alsaade and Mosleh Hmoud Al-Adhaileh (2023) employ the autoencoder approach to solve the intrusion detection problem for CAN data.
 
