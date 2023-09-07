@@ -62,7 +62,7 @@ This posed a question — how can an algorithm tell this kind of data apart from
 Methods 2 and 3 utilised the second and third context clues. It was therefore reasonable to study the context of regular transmission and use these clues to discriminate the transmission of attacks. Thus, the framing of the problem as novelty detection.
 
 ## Scoring and Testing the methods
-It is not enough that a model detects anomalies. If a model predicts wrongly most of the time, the incessance will become annoying. Vehicle owners would want a model to detect as many anomalies as possible but not to the point where there are many spurious detections. Hence, each model would have to score a high true positive rate for the attack class and a low false positive rate so we don't end up with an incessant detector. A good model is one that balances precision and recall. Thus, the F1 score is a good metric.
+It is not enough that a model detects anomalies. If a model predicts wrongly most of the time, the incessance will become annoying. Vehicle owners would want a model to detect as many anomalies as possible but not to the point where there are many spurious detections. Hence, each model would have to score a high true positive rate for the attack class and a low false positive rate so we don't end up with an incessant detector. A good CAN intrusion detection model is one that balances precision and recall. Thus, the F1 score was chosen as metric.
 
 ### A Pattern to the Three Approaches
 For uniformity, each method was modeled as a class that defines the following methods:
@@ -73,7 +73,7 @@ The different methods follow a common principle: learn the representation of nor
 - `detect_anomalies()`  
 This method uses the model's internal representation of normal data to detect an anomaly. When predictions have been made, it prints the classification report and stores the F1 score of the model on the target attack in the model's `attack_f1` attribute.
 - `chart_f1()`  
-Each model defines a `chart_f1()` method to visualize the performance of the model on the different attack datasets as a barplot of F1 values.
+Each class defines a `chart_f1()` method to visualize the performance of the model on the different attack datasets as a barplot of F1 values.
 
 The similarity of the three classes made it possible to define a single testing function, `test_method`, that runs the `detect_anomalies()` method for each attack type and visualizes their F1 scores:
 
@@ -198,7 +198,7 @@ For the `AutoEncoder` class I implemented, the threshold of choice is 3 standard
 3. Compute the standard deviation (denoted σ) of the errors
 4. Define the threshold as a z-score of 3, or 3σ. Thus if the absolute value of the error, e, is greater than 3 standard deviations from the mean of regular errors, the data point belongs to an attack.
 
-For visual aid, any data point that falls in the 0.1% was determined an attack  
+For visual aid, any data point that falls in the 0.1% would be determined an attack  
 ![image](https://upload.wikimedia.org/wikipedia/commons/8/8c/Standard_deviation_diagram.svg)  
 Source: [M. W. Toews](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Standard_deviation_diagram.svg/600px-Standard_deviation_diagram.svg.png?20150115020654), [CC BY 2.5](https://creativecommons.org/licenses/by/2.5), via Wikimedia Commons
 
